@@ -25,6 +25,10 @@ export class HomePage {
     this.menu.enable(false);
     this.menu.swipeEnable(false);
   }
+
+  ionViewWillLeave(){
+    this.menu.swipeEnable(true);
+  }
     
   ionViewDidLeave() {
     this.menu.enable(true);
@@ -49,4 +53,9 @@ export class HomePage {
     }, 
     _error => {});
   }
+
+  signup(){
+    this.navCrl.navigateForward('/signup');
+  }
+
 }

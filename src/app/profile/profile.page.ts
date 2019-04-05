@@ -4,6 +4,7 @@ import { ClienteDTO } from 'src/models/cliente.dto';
 import { ClienteService } from '../services/domain/cliente.service';
 import { API_CONFIG } from 'src/config/api.config';
 import { NavController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class ProfilePage implements OnInit {
   constructor(
     public storage: StorageService,
     public clienteService : ClienteService,
-    public navCtrl : NavController) {
+    public navCtrl : NavController,
+    public auth : AuthService) {
   }
 
   ngOnInit() {
@@ -30,10 +32,12 @@ export class ProfilePage implements OnInit {
           this.getImageIfExists();
         },
         error => {
+          this.auth.logout();
           this.navCtrl.navigateForward('/home');
        });
     }
     else {
+      this.auth.logout();
       this.navCtrl.navigateForward('/home');
     }
   }

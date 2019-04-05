@@ -17,7 +17,6 @@ export class CategoriasPage {
   constructor(public categoriaService : CategoriaService) { }
 
   ngOnInit() {
-    console.log('ionViewDidLoad CategoriasPage');
     // callback com função anônima
     this.categoriaService.findAll()
       .subscribe(response => {
