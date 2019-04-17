@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item (click)="buttonClick()" *ngFor="let item of items">
+    <ion-item *ngFor="let item of items" (click)="showProdutos()">
       <ion-thumbnail item-start>
         <ion-img src="{{bucketUrl}}/cat{{item.id}}.jpg"></ion-img>
       </ion-thumbnail>
