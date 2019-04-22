@@ -18,6 +18,7 @@ import { AuthInterceptorProvider } from 'src/interceptors/auth-interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CidadeService } from './services/domain/cidade.service';
 import { EstadoService } from './services/domain/estado.service';
+import { ProdutoService } from './services/domain/produto.service';
 
 
 
@@ -46,7 +47,8 @@ import { EstadoService } from './services/domain/estado.service';
     FormsModule,
     ReactiveFormsModule,
     CidadeService,
-    EstadoService
+    EstadoService,
+    ProdutoService
   ],
   bootstrap: [AppComponent]
 })

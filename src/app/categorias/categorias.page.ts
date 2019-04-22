@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { CategoriaService } from '../services/domain/categoria.service';
 import { CategoriaDTO } from 'src/models/categoria.dto';
 import { API_CONFIG } from 'src/config/api.config';
-import { NavController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NavController, NavParams } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-categorias',
@@ -15,7 +17,7 @@ export class CategoriasPage {
 
   items: CategoriaDTO[];
 
-  constructor(public categoriaService : CategoriaService, public navCtrl: NavController) { }
+  constructor(public categoriaService : CategoriaService, public router: Router) { }
 
   ngOnInit() {
     // callback com função anônima
@@ -26,7 +28,8 @@ export class CategoriasPage {
     error => {});
   }
 
-  showProdutos(){
-    this.navCtrl.navigateForward('/produtos');
+  showProdutos(categoria_id : string) {
+    let data = JSON.stringify(categoria_id);
+    this.router.navigate(['produtos', data]);
   }
 }
