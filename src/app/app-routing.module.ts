@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'categorias', loadChildren: './categorias/categorias.module#CategoriasPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  { path: 'produtos/:data', loadChildren: './produtos/produtos.module#ProdutosPageModule' }
+  { path: 'produtos/:data', loadChildren: './produtos/produtos.module#ProdutosPageModule' },
+  { path: 'produto-detail', loadChildren: './produto-detail/produto-detail.module#ProdutoDetailPageModule' }
 ];
 
 @NgModule({

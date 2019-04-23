@@ -14,7 +14,9 @@ export class ProdutosPage implements OnInit {
 
   items : ProdutoDTO[];
 
-  constructor(public activateRoute: ActivatedRoute, public produtoService: ProdutoService) { }
+  constructor(public activateRoute: ActivatedRoute, 
+              public produtoService: ProdutoService,
+              public navCrtl: NavController) { }
 
   ngOnInit() {
     let categoria_id = this.activateRoute.snapshot.paramMap.get('data');
@@ -35,6 +37,9 @@ export class ProdutosPage implements OnInit {
       },
       error => {});
     }
-    
+  }
+
+  showDetail(){
+    this.navCrtl.navigateForward('/produto-detail');
   }
 }
