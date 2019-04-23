@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoDTO } from 'src/models/produto.dto';
-import { NavController, NavParams } from '@ionic/angular';
+import { NavController} from '@ionic/angular';
 import { ProdutoService } from '../services/domain/produto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from 'src/config/api.config';
 
 @Component({
@@ -16,7 +16,8 @@ export class ProdutosPage implements OnInit {
 
   constructor(public activateRoute: ActivatedRoute, 
               public produtoService: ProdutoService,
-              public navCrtl: NavController) { }
+              public navCrtl: NavController,
+              public router: Router) { }
 
   ngOnInit() {
     let categoria_id = this.activateRoute.snapshot.paramMap.get('data');
@@ -39,7 +40,8 @@ export class ProdutosPage implements OnInit {
     }
   }
 
-  showDetail(){
-    this.navCrtl.navigateForward('/produto-detail');
+  showDetail(produto_id : string){
+    let prodData = JSON.stringify(produto_id);
+    this.router.navigate(['produto-detail', prodData]);
   }
 }
