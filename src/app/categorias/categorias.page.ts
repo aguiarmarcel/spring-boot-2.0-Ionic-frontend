@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { CategoriaService } from '../services/domain/categoria.service';
 import { CategoriaDTO } from 'src/models/categoria.dto';
 import { API_CONFIG } from 'src/config/api.config';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NavController, NavParams } from '@ionic/angular';
-
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-categorias',
@@ -17,7 +15,8 @@ export class CategoriasPage {
 
   items: CategoriaDTO[];
 
-  constructor(public categoriaService : CategoriaService, public router: Router) { }
+  constructor(public categoriaService : CategoriaService, 
+              public router: Router) { }
 
   ngOnInit() {
     // callback com função anônima

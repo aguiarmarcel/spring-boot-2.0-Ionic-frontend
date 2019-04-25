@@ -6,8 +6,6 @@ import { EstadoService } from '../services/domain/estado.service';
 import { EstadoDTO } from 'src/models/estado.dto';
 import { CidadeDTO } from 'src/models/cidade.dto';
 import { ClienteService } from '../services/domain/cliente.service';
-import { text } from '@angular/core/src/render3';
-
 
 @Component({
   selector: 'app-signup',
@@ -48,6 +46,14 @@ export class SignupPage implements OnInit {
       });
   }
 
+  ionViewWillEnter() {
+    this.menu.swipeEnable(false);
+  }  
+
+  ionViewWillLeave(){
+    this.menu.swipeEnable(true);
+  }
+
   ngOnInit() {
     this.estadoService.findAll().subscribe(response => {
       this.estados = response;
@@ -58,7 +64,7 @@ export class SignupPage implements OnInit {
   }
   
   updateCidades(){
-    let estado_id = this.formGroup.value.estadoId;
+    let estado_id = this.formGroup.controls.estadoId.value;
     this.cidadeService.findAll(estado_id).subscribe(response =>{
       this.cidades = response;
       this.formGroup.controls.cidadeId.setValue(null);

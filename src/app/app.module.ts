@@ -19,6 +19,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CidadeService } from './services/domain/cidade.service';
 import { EstadoService } from './services/domain/estado.service';
 import { ProdutoService } from './services/domain/produto.service';
+import { CartService } from './services/domain/cart.service';
 
 
 
@@ -48,7 +49,8 @@ import { ProdutoService } from './services/domain/produto.service';
     ReactiveFormsModule,
     CidadeService,
     EstadoService,
-    ProdutoService
+    ProdutoService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

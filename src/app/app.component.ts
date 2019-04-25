@@ -18,7 +18,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar) {
+    private statusBar: StatusBar,
+    public authService: AuthService) {
     this.initializeApp();
   }
   
@@ -26,7 +27,7 @@ export class AppComponent {
     
     { title: 'Profile', url: '/profile', component: "ProfilePage"},
     { title: 'Categorias', url: '/categorias', component: "CategoriasPage"},
-    { title: 'Logout', component: ''}
+    { title: 'Logout', url: '/home'}
   ];
 
   initializeApp() {
@@ -34,5 +35,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  openPage(appPages : {title: string, component: string}){
+    switch (appPages.title) {
+      case 'Logout':
+      this.authService.logout();
+      break;
+
+      default:
+      this.nav.navigateRoot(appPages.component);
+    }
   }
 }
