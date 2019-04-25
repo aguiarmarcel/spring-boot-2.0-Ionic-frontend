@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EnderecoDTO } from 'src/models/endereco.dto';
+import { StorageService } from '../services/storage.service';
+import { ClienteService } from '../services/domain/cliente.service';
+import { AuthService } from '../services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pick-address',
@@ -10,43 +14,27 @@ export class PickAddressPage implements OnInit {
 
   items: EnderecoDTO[];
 
-  constructor() { }
+  constructor(
+    public storage: StorageService,
+    public clienteService: ClienteService,
+    public navCtrl: NavController,
+    public auth: AuthService) {}
 
   ngOnInit() {
-    this.items =[
-      {
-        id: '1',
-        logradouro: "Rua Desembargador Dionisio FIlgueira",
-        numero: '744',
-        complemento: 'ap 201',
-        bairro: 'Petrópolis',
-        cep: '59014-020',
-        cidade: {
-          id: '1',
-          nome: 'Natal',
-          estado: {
-            id: '1',
-            nome: 'Rio Grande do Norte'
-          }
-        }
-      },
-      {
-        id: '2',
-        logradouro: "Rua Professora Maria Sales",
-        numero: '222',
-        complemento: 'ap 201',
-        bairro: 'Tambaú',
-        cep: '58014-020',
-        cidade: {
-          id: '2',
-          nome: 'João Pessoa',
-          estado: {
-            id: '2',
-            nome: 'Paraíba'
-          }
-        }
-      }
-    ]
+    let localUser = this.storage.getLocalUser();
+    if (localUser && localUser.email) {
+      this.clienteService.findByEmail(localUser.email)
+        .subscribe(response => {
+          this.items = response['enderecos'];
+        },
+        error => {
+          this.auth.logout();
+          this.navCtrl.navigateForward('/home');
+       });
+    }
+    else {
+      this.auth.logout();
+      this.navCtrl.navigateForward('/home');
+    }  
   }
-
 }
