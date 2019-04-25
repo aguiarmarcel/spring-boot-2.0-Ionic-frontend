@@ -3,6 +3,8 @@ import { CartItem } from 'src/models/cart-item';
 import { API_CONFIG } from 'src/config/api.config';
 import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
+import { ProdutoDTO } from 'src/models/produto.dto';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +16,8 @@ export class CartPage implements OnInit {
   items: CartItem[];
 
   constructor(public produtoService: ProdutoService,
-              public cartService: CartService) { }
+              public cartService: CartService,
+              public navControler: NavController) { }
 
   ngOnInit() {
     let cart = this.cartService.getCart();
@@ -33,4 +36,23 @@ export class CartPage implements OnInit {
     }
   }
 
+  removeItem(produto: ProdutoDTO){
+    this.items = this.cartService.removeProduto(produto).items;
+  }
+
+  increaseQuantity(produto: ProdutoDTO){
+    this.items = this.cartService.increaseQuantity(produto).items;
+  }
+
+  decreaseQuantity(produto: ProdutoDTO){
+    this.items = this.cartService.decreaseQuantity(produto).items;
+  }
+
+  total() : number{
+    return this.cartService.total();
+  }
+
+  goOn(){
+    this.navControler.navigateRoot('/categorias');
+  }
 }
