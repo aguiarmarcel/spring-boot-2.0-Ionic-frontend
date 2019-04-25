@@ -27,6 +27,7 @@ export class AppComponent {
     
     { title: 'Profile', url: '/profile', component: "ProfilePage"},
     { title: 'Categorias', url: '/categorias', component: "CategoriasPage"},
+    { title: 'Carrinho de compras', url: '/cart', component: "CartPage"},
     { title: 'Logout', url: '/home'}
   ];
 
