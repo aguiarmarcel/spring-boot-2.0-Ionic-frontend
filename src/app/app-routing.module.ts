@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'produtos/:data', loadChildren: './produtos/produtos.module#ProdutosPageModule' },
   { path: 'produto-detail/:prodData', loadChildren: './produto-detail/produto-detail.module#ProdutoDetailPageModule' },
-  { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' }
+  { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
+  { path: 'e', loadChildren: './e/e.module#EPageModule' },
+  { path: 'pick-address', loadChildren: './pick-address/pick-address.module#PickAddressPageModule' }
 ];
 
 @NgModule({

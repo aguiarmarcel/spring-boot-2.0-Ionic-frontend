@@ -28,7 +28,7 @@ export class AppComponent {
     { title: 'Profile', url: '/profile', component: "ProfilePage"},
     { title: 'Categorias', url: '/categorias', component: "CategoriasPage"},
     { title: 'Carrinho de compras', url: '/cart', component: "CartPage"},
-    { title: 'Logout', url: '/home'}
+    { title: 'Logout', url: '/home', component: ''}
   ];
 
   initializeApp() {
@@ -45,7 +45,7 @@ export class AppComponent {
       break;
 
       default:
-      this.nav.navigateRoot(appPages.component);
+      //this.nav.navigateRoot(appPages.component);
     }
   }
 }
