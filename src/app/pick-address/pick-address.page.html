@@ -12,7 +12,7 @@
     <ion-list-header>
       <ion-label>Selecione um endereço</ion-label>
     </ion-list-header>
-      <ion-item *ngFor="let item of items">
+      <ion-item *ngFor="let item of items" (click)="nextPage(item)">
         <ion-label>
           <h2>{{item.logradouro}}</h2>
           <p>Número {{item.numero}}, {{item.complemento}}, {{item.bairro}} </p>
