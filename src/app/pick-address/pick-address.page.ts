@@ -6,7 +6,8 @@ import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
 import { PedidoDTO } from 'src/models/pedido.dto';
 import { CartService } from '../services/domain/cart.service';
-import { ClienteDTO } from 'src/models/cliente.dto';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-pick-address',
@@ -24,7 +25,8 @@ export class PickAddressPage implements OnInit {
     public clienteService: ClienteService,
     public navCtrl: NavController,
     public auth: AuthService,
-    public cartService: CartService) {}
+    public cartService: CartService,
+    public router: Router) {}
 
   ngOnInit() {
     let localUser = this.storage.getLocalUser();
@@ -55,6 +57,10 @@ export class PickAddressPage implements OnInit {
 
   nextPage(item: EnderecoDTO){
     this.pedido.enderecoDeEntrega = {id: item.id};
-    console.log(this.pedido);
+    this.router.navigate(['/payment'], {
+      queryParams:{
+        value: JSON.stringify(this.pedido)
+      },
+    });  
   }
 }

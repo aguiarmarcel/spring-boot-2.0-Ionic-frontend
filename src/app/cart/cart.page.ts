@@ -4,7 +4,7 @@ import { API_CONFIG } from 'src/config/api.config';
 import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
 import { ProdutoDTO } from 'src/models/produto.dto';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +17,8 @@ export class CartPage implements OnInit {
 
   constructor(public produtoService: ProdutoService,
               public cartService: CartService,
-              public navControler: NavController) { }
+              public navControler: NavController,
+              public alertCtrl: AlertController) { }
 
   ngOnInit() {
     let cart = this.cartService.getCart();
@@ -56,7 +57,7 @@ export class CartPage implements OnInit {
     this.navControler.navigateRoot('/categorias');
   }
 
-  checkout(){
+  async checkout(){
     this.navControler.navigateForward('/pick-address');
   }
 }
