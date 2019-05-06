@@ -20,6 +20,7 @@ import { CidadeService } from './services/domain/cidade.service';
 import { EstadoService } from './services/domain/estado.service';
 import { ProdutoService } from './services/domain/produto.service';
 import { CartService } from './services/domain/cart.service';
+import { PedidoService } from './services/domain/pedido.service';
 
 
 
@@ -50,6 +51,7 @@ import { CartService } from './services/domain/cart.service';
     CidadeService,
     EstadoService,
     ProdutoService,
+    PedidoService,
     CartService
   ],
   bootstrap: [AppComponent]

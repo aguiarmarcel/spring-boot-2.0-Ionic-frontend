@@ -6,8 +6,9 @@ import { CartService } from '../services/domain/cart.service';
 import { ClienteDTO } from 'src/models/cliente.dto';
 import { EnderecoDTO } from 'src/models/endereco.dto';
 import { ClienteService } from '../services/domain/cliente.service';
-import { NavController, NavParams } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { StorageService } from '../services/storage.service';
+import { PedidoService } from '../services/domain/pedido.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -26,7 +27,9 @@ export class OrderConfirmationPage implements OnInit {
     public cartService : CartService,
     public clienteService : ClienteService,
     public storage : StorageService,
-    public navctrl : NavController) { 
+    public navctrl : NavController,
+    public pedidoService : PedidoService)
+     { 
     
       //Pega o objeto pedido, quem vem da página de pagamento. 
       this.activatedRoute.queryParams
@@ -44,7 +47,6 @@ export class OrderConfirmationPage implements OnInit {
       .subscribe(response => {
         this.cliente = response as ClienteDTO;
         this.endereco = this.findEndereco(this.pedido.enderecoDeEntrega.id, response['enderecos']);
-       
       },
       error => {
         this.navctrl.navigateForward('/home');
@@ -61,6 +63,24 @@ export class OrderConfirmationPage implements OnInit {
 
   total(){
     return this.cartService.total();
+  }
+
+  checkout(){
+    this.pedido.cliente = {id: this.cliente.id}; 
+    this.pedidoService.insert(this.pedido)
+      .subscribe(Response => {
+        this.cartService.createOrCleanCart();
+        console.log(Response.headers.get('location'));
+      },
+      error => {
+        if (error.status == 403) {
+          this.navctrl.navigateRoot('/home');
+        }
+      });
+  }
+
+  back(){
+    this.navctrl.navigateForward('/cart');
   }
 
 }
