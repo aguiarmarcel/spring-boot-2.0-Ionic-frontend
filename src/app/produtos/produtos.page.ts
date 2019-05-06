@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProdutoDTO } from 'src/models/produto.dto';
-import { NavController} from '@ionic/angular';
+import { NavController, LoadingController} from '@ionic/angular';
 import { ProdutoService } from '../services/domain/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { API_CONFIG } from 'src/config/api.config';
+import { LoadedRouterConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-produtos',
@@ -14,19 +15,28 @@ export class ProdutosPage implements OnInit {
 
   items : ProdutoDTO[];
 
-  constructor(public activateRoute: ActivatedRoute, 
-              public produtoService: ProdutoService,
-              public navCrtl: NavController,
-              public router: Router) { }
+  constructor(
+    public activateRoute: ActivatedRoute, 
+    public produtoService: ProdutoService,
+    public navCrtl: NavController,
+    public router: Router,
+    public loudingCtrl : LoadingController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     let categoria_id = this.activateRoute.snapshot.paramMap.get('data');
+    const te = await this.loudingCtrl.create({
+      message: "Aguarde..."
+    });
+    await te.present();
     this.produtoService.findByCategoria(categoria_id)
     .subscribe(response => {
       this.items = response['content'];
+      te.dismiss();
       this.loadImageUrls();
     },
-    error => {});
+    error => {
+      this.loudingCtrl.dismiss();
+    });
   }
 
   loadImageUrls(){
