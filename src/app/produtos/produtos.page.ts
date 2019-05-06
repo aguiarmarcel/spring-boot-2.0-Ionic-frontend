@@ -54,4 +54,11 @@ export class ProdutosPage implements OnInit {
     let prodData = JSON.stringify(produto_id);
     this.router.navigate(['produto-detail', prodData]);
   }
+
+  doRefresh(event) {
+    this.ngOnInit();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
 }
