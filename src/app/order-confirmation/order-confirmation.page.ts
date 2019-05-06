@@ -21,6 +21,7 @@ export class OrderConfirmationPage implements OnInit {
   cartItems: CartItem[];
   cliente: ClienteDTO;
   endereco: EnderecoDTO;
+  codPedido: string;
   
   constructor(
     public activatedRoute : ActivatedRoute,
@@ -70,7 +71,7 @@ export class OrderConfirmationPage implements OnInit {
     this.pedidoService.insert(this.pedido)
       .subscribe(Response => {
         this.cartService.createOrCleanCart();
-        console.log(Response.headers.get('location'));
+        this.codPedido = this.extractId(Response.headers.get('location'));
       },
       error => {
         if (error.status == 403) {
@@ -81,6 +82,15 @@ export class OrderConfirmationPage implements OnInit {
 
   back(){
     this.navctrl.navigateForward('/cart');
+  }
+
+  home(){
+    this.navctrl.navigateRoot('categorias');
+  }
+
+  private extractId(location : string) : string{
+    let position = location.lastIndexOf('/');
+    return location.substring(position + 1, location.length);
   }
 
 }
