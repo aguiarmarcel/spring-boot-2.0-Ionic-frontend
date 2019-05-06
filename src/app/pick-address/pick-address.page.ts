@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 export class PickAddressPage implements OnInit {
 
   items: EnderecoDTO[];
-
   pedido: PedidoDTO;
 
   constructor(
@@ -36,9 +35,9 @@ export class PickAddressPage implements OnInit {
           this.items = response['enderecos'];
 
           let cart = this.cartService.getCart();
-
+         
           this.pedido = {
-            cliente: response['id'],  
+            cliente: null,  
             enderecoDeEntrega: null,
             pagamento: null,
             itens : cart.items.map(x => {return {quantidade: x.quantidade, produto: {id: x.produto.id}}})

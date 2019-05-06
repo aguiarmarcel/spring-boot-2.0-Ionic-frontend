@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidoDTO } from 'src/models/pedido.dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -16,16 +16,17 @@ export class PaymentPage implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public activatedRoute : ActivatedRoute) {
+    public activatedRoute : ActivatedRoute,
+    public router : Router) {
 
       //Pega o objeto pedido, quem vem da página de endereço. 
       this.activatedRoute.queryParams
         .subscribe((res) => { 
           this.pedido = JSON.parse(res.value);
-      })
+      });
   
       this.formGroup = this.formBuilder.group({
-        numeroDeParcelas: ['', Validators.required],
+        numeroDeParcelas: [1, Validators.required],
         "@type": ["pagamentoComCartao", Validators.required]
       });
      }
@@ -33,8 +34,13 @@ export class PaymentPage implements OnInit {
 ngOnInit() {}
 
   nextPage(){
-    this.pedido.pagamento = this.formGroup.value;
-    console.log(this.pedido);
+    //Insere no objeto pedido as informações de pagamento
+    this.pedido.pagamento = this.formGroup.value; 
+    this.router.navigate(['order-confirmation'], {
+      queryParams:{
+        value: JSON.stringify(this.pedido)
+      }
+    }); 
   }
 
 }

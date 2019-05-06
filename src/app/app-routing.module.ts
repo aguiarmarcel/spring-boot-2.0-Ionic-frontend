@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'produto-detail/:prodData', loadChildren: './produto-detail/produto-detail.module#ProdutoDetailPageModule' },
   { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
   { path: 'pick-address', loadChildren: './pick-address/pick-address.module#PickAddressPageModule' },
-  { path: 'payment', loadChildren: './payment/payment.module#PaymentPageModule' }
+  { path: 'payment', loadChildren: './payment/payment.module#PaymentPageModule' },
+  { path: 'order-confirmation', loadChildren: './order-confirmation/order-confirmation.module#OrderConfirmationPageModule' }
 ];
 
 @NgModule({
