@@ -71,4 +71,18 @@ export class ProfilePage implements OnInit {
     }, (err) => {
     });
   }
+
+  sendPicture(){
+    this.clienteService.uploadPicture(this.picture)
+        .subscribe(response => {
+          this.picture = null;
+          this.ngOnInit();
+        },
+        error => {
+        });
+  }
+
+  cancel(){
+    this.picture = null;
+  }
 }

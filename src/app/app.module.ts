@@ -19,6 +19,7 @@ import { EstadoService } from './services/domain/estado.service';
 import { ProdutoService } from './services/domain/produto.service';
 import { CartService } from './services/domain/cart.service';
 import { PedidoService } from './services/domain/pedido.service';
+import { ImageUtilService } from './services/image-util.service';
 
 
 
@@ -50,7 +51,8 @@ import { PedidoService } from './services/domain/pedido.service';
     EstadoService,
     ProdutoService,
     PedidoService,
-    CartService
+    CartService,
+    ImageUtilService
   ],
   bootstrap: [AppComponent]
 })
