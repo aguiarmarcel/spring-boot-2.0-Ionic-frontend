@@ -18,4 +18,14 @@
   </ion-avatar>
   <h2 text-center>{{cliente?.nome}}</h2>
   <p text-center>{{cliente?.email}}</p>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-title>Enviar imagem de perfil</ion-title>
+    </ion-card-header>
+    <ion-item expand="block" *ngIf="picture">
+      <ion-img [src]="picture"></ion-img>
+    </ion-item>
+    <ion-button expand="block" (click)="getCameraPicture()" [disabled]="cameraOn">Camera</ion-button>
+  </ion-card> 
 </ion-content>
