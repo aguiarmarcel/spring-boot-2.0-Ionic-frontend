@@ -27,6 +27,7 @@
       <ion-img [src]="picture"></ion-img>
     </ion-item>
     <ion-button expand="block" (click)="getCameraPicture()" [disabled]="cameraOn">Camera</ion-button>
+    <ion-button expand="block" (click)="getGaleryPicture()" [disabled]="cameraOn">Galeria</ion-button>
     <ion-button expand="block" fill="outline" *ngIf="picture" (click)="sendPicture()">Enviar imagem</ion-button>
     <ion-button expand="block" fill="outline" *ngIf="picture" (click)="cancel()">Descartar imagem</ion-button>
   </ion-card> 

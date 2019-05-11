@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.aguiar_marcel.springbootionic" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Sistema de pedidos</name>
+    <name>Bazar</name>
     <description>Umestudo de caso em Spring Boot e Ionic/Cordova app.</description>
     <author email="aguiar.marcel.bezerra@gmail.com" href="https://www.linkedin.com/in/marcel-aguiar-2a879b29/">Marcel Bezerra de Aguiar</author>
     <content src="index.html" />
