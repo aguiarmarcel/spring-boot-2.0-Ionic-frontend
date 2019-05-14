@@ -69,7 +69,7 @@ export class ProdutosPage implements OnInit {
     }, 1000);
   }
 
-  doInfinite(scroll){
+  doInfinite(event){
     this.page++;
     this.ngOnInit();
     setTimeout(() => {
